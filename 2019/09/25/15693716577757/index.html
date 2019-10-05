@@ -10,7 +10,7 @@
   
   <title>
     
-      Hexo
+      资源池的总结 | Hexo
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -143,52 +143,163 @@
 </header>
 
     <div id="article-banner">
-  <h2>Archives</h2>
-  <p class="post-date">文章归档</p>
+  <h2>资源池的总结</h2>
+  <p class="post-date">2019-09-25</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
 </div>
-<main class="app-body" id="archives">
-  
-  
-  
-    <section class="time-section">
-  <h1 class="section-year">
-    2019
-  </h1>
-  <div class="section-list">
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="资源池的总结"><a href="#资源池的总结" class="headerlink" title="资源池的总结"></a>资源池的总结</h1><p>为了提高并发及减少系统的开销，我们在架构设计的过程中都加入了“池”概念，如：tcp/http连接池，线程池、redis的连接池等等。以下对种种池做一个分析及总结</p>
+<h2 id="http（网络）连接池"><a href="#http（网络）连接池" class="headerlink" title="http（网络）连接池"></a>http（网络）连接池</h2><h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><h2 id="中间件的连接池"><a href="#中间件的连接池" class="headerlink" title="中间件的连接池"></a>中间件的连接池</h2></section>
+    <!-- Tags START -->
     
-    
-      <div class="section-list-item">
-        <a href="/2019/09/27/15695833093085/" class="archive-title">服务器</a>
-        <p class="archive-date">09-27</p>
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#精华总结" >
+    <span class="tag-code">精华总结</span>
+  </a>
+
       </div>
     
-      <div class="section-list-item">
-        <a href="/2019/09/25/15693716577757/" class="archive-title">资源池的总结</a>
-        <p class="archive-date">09-25</p>
-      </div>
+    <!-- Tags END -->
+    <!-- NAV START -->
     
-      <div class="section-list-item">
-        <a href="/2019/09/25/15693714630833/" class="archive-title">Hexo+Mweb搭建个人博客</a>
-        <p class="archive-date">09-25</p>
-      </div>
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <div class="section-list-item">
-        <a href="/2019/09/24/15692916121897/" class="archive-title">Go-Http-Clien详解</a>
-        <p class="archive-date">09-24</p>
-      </div>
+      <a class="nav-left" href="/2019/09/24/15692916121897/">
+        <span class="nav-arrow">← </span>
+        
+          Go-Http-Clien详解
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2019/09/25/15693714630833/">
+        
+          Hexo+Mweb搭建个人博客
+        
+        <span class="nav-arrow"> →</span>
+      </a>
     
   </div>
-</section>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
   
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#资源池的总结"><span class="toc-nav-text">资源池的总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#http（网络）连接池"><span class="toc-nav-text">http（网络）连接池</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#线程池"><span class="toc-nav-text">线程池</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#中间件的连接池"><span class="toc-nav-text">中间件的连接池</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
 </main>
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/archives/2019/index.html';
-    $('#article-banner').geopattern(url);
-    $('.header').removeClass('fixed-header');
+    var url = 'http://yoursite.com/2019/09/25/15693716577757/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
   })();
 </script>
+
+
+
+
+  <script>
+    var gitmentConfig = "weletry";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "资源池的总结",
+        owner: "weletry",
+        repo: "weletry.github.io",
+        oauth: {
+          client_id: "58a8359827da27b34578",
+          client_secret: "b2ec69e99ca304bb72462bc6623c8205adff4c87"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
