@@ -10,7 +10,7 @@
   
   <title>
     
-      Tags | Hexo
+      Hexo
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -143,74 +143,50 @@
 </header>
 
     <div id="article-banner">
-  <h2>Tags</h2>
-  <p class="post-date">标签检索</p>
+  <h2>Archives</h2>
+  <p class="post-date">文章归档</p>
 </div>
-<main class="app-body">
-  <div id="tag-cloud">
+<main class="app-body" id="archives">
+  
+  
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2019
+  </h1>
+  <div class="section-list">
     
-      <a class="tag3" data-name="tag-安装部署">安装部署</a>
     
-      <a class="tag1" data-name="tag-精华总结">精华总结</a>
+      <div class="section-list-item">
+        <a href="/2019/09/27/15695833093085/" class="archive-title">服务器</a>
+        <p class="archive-date">09-27</p>
+      </div>
     
-      <a class="tag2" data-name="tag-Go语言学习">Go语言学习</a>
+      <div class="section-list-item">
+        <a href="/2019/09/25/15693716577757/" class="archive-title">资源池的总结</a>
+        <p class="archive-date">09-25</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2019/09/25/15693714630833/" class="archive-title">Hexo+Mweb搭建个人博客</a>
+        <p class="archive-date">09-25</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2019/09/24/15692916121897/" class="archive-title">Go-Http-Clien详解</a>
+        <p class="archive-date">09-24</p>
+      </div>
     
   </div>
+</section>
   
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-安装部署">安装部署</h3>
-      
-        <ul class="tag-preview">
-          <li>
-            <a href="/2019/09/25/15693714630833/">Hexo+Mweb搭建个人博客</a>
-          </li>
-        </ul>
-        
-        <ul class="tag-preview">
-          <li>
-            <a href="/2019/09/27/15695833093085/">服务器</a>
-          </li>
-        </ul>
-        
-    </div>
-    
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-精华总结">精华总结</h3>
-      
-        <ul class="tag-preview">
-          <li>
-            <a href="/2019/09/25/15693716577757/">资源池的总结</a>
-          </li>
-        </ul>
-        
-    </div>
-    
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-Go语言学习">Go语言学习</h3>
-      
-        <ul class="tag-preview">
-          <li>
-            <a href="/2019/09/24/15692916121897/">Go-Http-Clien详解</a>
-          </li>
-        </ul>
-        
-    </div>
-    
 </main>
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/tags/index.html'
-    $('#article-banner').geopattern(url)
-    $('.header').removeClass('fixed-header')
-
-    var tag = location.hash.replace('#', '')
-    if (tag) {
-      var tagId = "#tag-" + tag;
-      $("html, body").animate({
-        scrollTop: $(tagId).offset().top 
-      }, 400)
-    }
+    var url = 'http://yoursite.com/tags/精华总结/index.html';
+    $('#article-banner').geopattern(url);
+    $('.header').removeClass('fixed-header');
   })();
 </script>
     <div class="scroll-top">

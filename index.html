@@ -10,7 +10,7 @@
   
   <title>
     
-      Tags | Hexo
+      Hexo
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -70,7 +70,7 @@
       
         <li class="list-item">
           
-            <a href="/" class="item-link">Home</a>
+            <a href="/" class="item-link active">Home</a>
           
         </li>
       
@@ -109,7 +109,7 @@
         
           <li class="menu-item">
             
-              <a href="/" class="menu-link">Home</a>
+              <a href="/" class="menu-link mobile-active">Home</a>
             
           </li>
         
@@ -142,77 +142,99 @@
   </div>
 </header>
 
-    <div id="article-banner">
-  <h2>Tags</h2>
-  <p class="post-date">标签检索</p>
-</div>
-<main class="app-body">
-  <div id="tag-cloud">
-    
-      <a class="tag3" data-name="tag-安装部署">安装部署</a>
-    
-      <a class="tag1" data-name="tag-精华总结">精华总结</a>
-    
-      <a class="tag2" data-name="tag-Go语言学习">Go语言学习</a>
-    
-  </div>
+    <main class="app-body">
   
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-安装部署">安装部署</h3>
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/09/27/15695833093085/">服务器</a>
+      </h2>
+      <p class="article-date">September 27, 2019</p>
       
-        <ul class="tag-preview">
-          <li>
-            <a href="/2019/09/25/15693714630833/">Hexo+Mweb搭建个人博客</a>
-          </li>
-        </ul>
         
-        <ul class="tag-preview">
-          <li>
-            <a href="/2019/09/27/15695833093085/">服务器</a>
-          </li>
-        </ul>
-        
-    </div>
-    
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-精华总结">精华总结</h3>
+  <a href="/tags#安装部署" >
+    <span class="tag-code">安装部署</span>
+  </a>
+
       
-        <ul class="tag-preview">
-          <li>
-            <a href="/2019/09/25/15693716577757/">资源池的总结</a>
-          </li>
-        </ul>
+      <div class="article-summary">
         
-    </div>
-    
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-Go语言学习">Go语言学习</h3>
+          服务器私人服务器：ssh root@112.74.68.61
+
+        
+      </div>
+      <a class="more" href="/2019/09/27/15695833093085/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/09/25/15693714630833/">Hexo+Mweb搭建个人博客</a>
+      </h2>
+      <p class="article-date">September 25, 2019</p>
       
-        <ul class="tag-preview">
-          <li>
-            <a href="/2019/09/24/15692916121897/">Go-Http-Clien详解</a>
-          </li>
-        </ul>
         
-    </div>
-    
+  <a href="/tags#安装部署" >
+    <span class="tag-code">安装部署</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Hexo+Mweb搭建个人博客Hexo博客的过程https://www.jianshu.com/p/b1ea59daf404
+使用hexo+github搭建免费个人博客详细教程（ ）rs主题：https://hexo.io/themes/使用MWeb外部模式支持Hexo：https://ja ...
+        
+      </div>
+      <a class="more" href="/2019/09/25/15693714630833/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/09/25/15693716577757/">资源池的总结</a>
+      </h2>
+      <p class="article-date">September 25, 2019</p>
+      
+        
+  <a href="/tags#精华总结" >
+    <span class="tag-code">精华总结</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          资源池的总结为了提高并发及减少系统的开销，我们在架构设计的过程中都加入了“池”概念，如：tcp/http连接池，线程池、redis的连接池等等。以下对种种池做一个分析及总结
+http（网络）连接池线程池中间件的连接池
+        
+      </div>
+      <a class="more" href="/2019/09/25/15693716577757/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/09/24/15692916121897/">Go-Http-Clien详解</a>
+      </h2>
+      <p class="article-date">September 24, 2019</p>
+      
+        
+  <a href="/tags#Go语言学习" >
+    <span class="tag-code">Go语言学习</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          Go-Http-Clien详解
+参考
+
+
+        
+      </div>
+      <a class="more" href="/2019/09/24/15692916121897/">Read more</a>
+    </article>
+  
+
+  
 </main>
 
-<script>
-  (function () {
-    var url = 'http://yoursite.com/tags/index.html'
-    $('#article-banner').geopattern(url)
-    $('.header').removeClass('fixed-header')
 
-    var tag = location.hash.replace('#', '')
-    if (tag) {
-      var tagId = "#tag-" + tag;
-      $("html, body").animate({
-        scrollTop: $(tagId).offset().top 
-      }, 400)
-    }
-  })();
-</script>
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
