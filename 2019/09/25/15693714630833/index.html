@@ -152,17 +152,96 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="Hexo-Mweb搭建个人博客"><a href="#Hexo-Mweb搭建个人博客" class="headerlink" title="Hexo+Mweb搭建个人博客"></a>Hexo+Mweb搭建个人博客</h1><h2 id="Hexo博客的过程"><a href="#Hexo博客的过程" class="headerlink" title="Hexo博客的过程"></a>Hexo博客的过程</h2><p><a href="https://www.jianshu.com/p/b1ea59daf404" target="_blank" rel="noopener">https://www.jianshu.com/p/b1ea59daf404</a></p>
-<p>使用hexo+github搭建免费个人博客详细教程（ ）<br>rs<br>主题：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a><br>使用MWeb外部模式支持Hexo：<a href="https://jamal-jiang.github.io/2017/10/25/%E4%BD%BF%E7%94%A8MWeb%E5%A4%96%E9%83%A8%E6%A8%A1%E5%BC%8F%E6%94%AF%E6%8C%81Hexo/" target="_blank" rel="noopener">https://jamal-jiang.github.io/2017/10/25/%E4%BD%BF%E7%94%A8MWeb%E5%A4%96%E9%83%A8%E6%A8%A1%E5%BC%8F%E6%94%AF%E6%8C%81Hexo/</a></p>
-<p>mweb生成网站的主题：<a href="https://coderforart.com/mweb-medium-like-theme.html" target="_blank" rel="noopener">https://coderforart.com/mweb-medium-like-theme.html</a></p>
-<p>mweb生成网站的主题库：<a href="https://zh.mweb.im/themes.html" target="_blank" rel="noopener">https://zh.mweb.im/themes.html</a></p>
-<p>好看的主题<a href="https://yanm1ng.github.io/2017/09/17/Day07-%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%AF%A6%E8%A7%A3/#4-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE" target="_blank" rel="noopener">地址</a></p>
-<p><a href="https://github.com/yanm1ng/hexo-theme-vexo" target="_blank" rel="noopener">git地址</a><br><img src="https://i.loli.net/2019/10/05/gmcXOvJdNYiZ954.jpg" alt="-w1598"></p>
-<h1 id="创建认证信息"><a href="#创建认证信息" class="headerlink" title="创建认证信息"></a>创建认证信息</h1><p><a href="https://github.com/settings/developers" target="_blank" rel="noopener">https://github.com/settings/developers</a><br>w</p>
-<p>另外一种方式：<br><a href="https://github.com/bramblex/mweb-medium-like" target="_blank" rel="noopener">https://github.com/bramblex/mweb-medium-like</a></p>
-<p>mweb的主题：<a href="https://www.v2ex.com/amp/t/343140" target="_blank" rel="noopener">https://www.v2ex.com/amp/t/343140</a></p>
-<h1 id="自动化工具（）："><a href="#自动化工具（）：" class="headerlink" title="自动化工具（）："></a>自动化工具（）：</h1><p><a href="https://github.com/tianhao/alfred-mweb-workflow" target="_blank" rel="noopener">https://github.com/tianhao/alfred-mweb-workflow</a></p>
-</section>
+    <section class="markdown-content"><h1 id="Hexo-Mweb搭建个人博客"><a href="#Hexo-Mweb搭建个人博客" class="headerlink" title="Hexo+Mweb搭建个人博客"></a>Hexo+Mweb搭建个人博客</h1><blockquote>
+<p>用hexo搭建个人博客主要分为几部分，分别是博客的初始化、发布到github、实现hexo+mweb自动化发布</p>
+</blockquote>
+<h2 id="初始化和发布"><a href="#初始化和发布" class="headerlink" title="初始化和发布"></a>初始化和发布</h2><blockquote>
+<p>这两个过程，网上很多教程，此处就不做过多描述</p>
+</blockquote>
+<p>初始化流程：<a href="https://www.jianshu.com/p/4818be9093f5" target="_blank" rel="noopener">https://www.jianshu.com/p/4818be9093f5</a><br>Hexo主题：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a><br>使用MWeb外部模式支持Hexo（个人原因没有使用这种操作）：<br>本博客使用提主题: <a href="https://github.com/yanm1ng/hexo-theme-vexo" target="_blank" rel="noopener">git地址</a></p>
+<p>github创建认证信息：<a href="https://github.com/settings/developer" target="_blank" rel="noopener">https://github.com/settings/developer</a></p>
+<h1 id="实现hexo-mweb自动化发布："><a href="#实现hexo-mweb自动化发布：" class="headerlink" title="实现hexo+mweb自动化发布："></a>实现hexo+mweb自动化发布：</h1><p>本身Mweb外部模式就已经支持了hexo的生成和发布。可以参考：<a href="https://jamal-jiang.github.io/2017/10/25/%E4%BD%BF%E7%94%A8MWeb%E5%A4%96%E9%83%A8%E6%A8%A1%E5%BC%8F%E6%94%AF%E6%8C%81Hexo/" target="_blank" rel="noopener">外部模式</a>。但是我希望的是使用文档库的模式，只把个人笔记中的一部分发布到hexo上。官方文档是没有这个实现的。</p>
+<p>如何实现？<br>生成hexo需要文件。我们需要解决如下几个问题：</p>
+<ul>
+<li>导出指定目录下的所有文章</li>
+<li>获取文章的标签、及获取文章的标签</li>
+<li>更换md文件中的图片地址。</li>
+</ul>
+<h2 id="导出指定目录下的所有文章"><a href="#导出指定目录下的所有文章" class="headerlink" title="导出指定目录下的所有文章"></a>导出指定目录下的所有文章</h2><p>解决这个问题，我们先看一下mweb笔记存储的目录结构。如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── docs</span><br><span class="line">│   ├── 15692915400572.md  //笔记中md文件</span><br><span class="line">│   ├── 15692916121897.md</span><br><span class="line">│   ├── 15693714630833.md</span><br><span class="line">│   ├── 15693716577757.md</span><br><span class="line">│   ├── 15695523729555.md</span><br><span class="line">│   ├── 15695833093085.md</span><br><span class="line">│   ├── 15697225294628.md</span><br><span class="line">│   └── media           //文件的图片信息</span><br><span class="line">│       ├── 15692916121897</span><br><span class="line">│       │   ├── 15693331530386.jpg</span><br><span class="line">│       │   └── 15693331719491.jpg</span><br><span class="line">│       └── 15693714630833</span><br><span class="line">│           ├── 15696371753526.jpg</span><br><span class="line">│           └── 15702421387855.jpg</span><br><span class="line">├── mainlib.db     //article、cat、cat_article、tag、tag_article 5个表</span><br></pre></td></tr></table></figure>
+
+<p>我们可以从mainlib.db（sqllite3）请到文件目录、文章与目录的关系。所以可以快速定位到哪些需要定位到的文档</p>
+<h2 id="获取文章的标签、及获取文章的标签"><a href="#获取文章的标签、及获取文章的标签" class="headerlink" title="获取文章的标签、及获取文章的标签"></a>获取文章的标签、及获取文章的标签</h2><p>同上可以mainlib.db获取到</p>
+<h2 id="更换md文件中的图片地址。"><a href="#更换md文件中的图片地址。" class="headerlink" title="更换md文件中的图片地址。"></a>更换md文件中的图片地址。</h2><p>把md中文件图片上传到sm.sm。具体看代码实现</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre><code># coding=utf-8
+import sys, sqlite3, json,time,re,os
+import smv2
+reload(sys)
+sys.setdefaultencoding(&apos;utf8&apos;)
+
+file_path= &quot;/Documents/note/&quot;
+copy_path= &quot;/data/weletry/hexo/source/_posts/&quot;
+img_json = &quot;/data/weletry/hexo/source/img.json&quot;
+hexo_file_name = &apos;技术笔记&apos;
+
+os.system(&quot;rm &quot;+ copy_path+&quot;*&quot;)
+with open(img_json,&apos;r&apos;) as load_f:
+     load_dict = json.load(load_f)
+
+conn = sqlite3.connect(file_path+&quot;mainlib.db&quot;)
+cursor = conn.cursor()
+sql = &quot; select uuid from cat where name =&apos;&quot;+hexo_file_name+&quot;&apos;&quot;
+cursor.execute(sql)
+uuid_values = cursor.fetchall()
+root_uuid = uuid_values[0][0]
+folder_list = []
+
+# 获取所有目录的uuid及名字
+def get_all_folder(p_uuid, folder_list):
+    conn = sqlite3.connect(file_path+&quot;mainlib.db&quot;)
+    cursor = conn.cursor()
+    sql = &quot; select id, uuid,name from cat where pid =&quot;+str(p_uuid)
+    cursor.execute(sql)
+    values = cursor.fetchall()
+
+
+    for item in values:
+        get_all_folder(item[1], folder_list)
+        # 文档目录下的文章
+        a_sql =  &quot;select ca.rid,a.uuid,a.dateAdd, a.dateModif from cat_article ca join article a on ca.aid = a.uuid where ca.rid=&quot; + str(item[1])
+        cursor.execute(a_sql)
+        cat_article_lists = cursor.fetchall()
+        articles = []
+        for article in cat_article_lists:
+
+            # 查询tag
+            tags = []
+            tag_sql = &quot;select t.name from tag_article ta join tag t on ta.rid = t.id where ta.aid = &quot;+str (article[1])
+            cursor.execute(tag_sql)
+            tag_article_lists = cursor.fetchall()
+            for tag in tag_article_lists:
+                tags.append(tag[0])
+            articles.append({
+                &quot;uuid&quot;: article[1],
+                &quot;dateAdd&quot;: article[2],
+                &quot;dateModif&quot;: article[3],
+                &quot;tags&quot;: tags
+            })
+
+        folder_list.append({
+            &quot;id&quot;:item[0],
+            &quot;uuid&quot;: item[1],
+            &quot;name&quot;: item[2],
+            &quot;articles&quot;:articles
+        })
+
+    # 保存所有文件夹，然后再向下递归
+    return folder_list
+
+# def upload_file_to_sm(file):
+
+
+def replace_url_img(line):</code></pre></section>
     <!-- Tags START -->
     
       <div class="tags">
@@ -180,20 +259,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2019/09/25/15693716577757/">
+      <a class="nav-left" href="/2019/09/24/15692916121897/">
         <span class="nav-arrow">← </span>
         
-          资源池的总结
+          Go-Http-Clien详解
         
       </a>
     
-    
-      <a class="nav-right" href="/2019/09/27/15695833093085/">
-        
-          服务器
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -217,7 +289,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Hexo-Mweb搭建个人博客"><span class="toc-nav-text">Hexo+Mweb搭建个人博客</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Hexo博客的过程"><span class="toc-nav-text">Hexo博客的过程</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#创建认证信息"><span class="toc-nav-text">创建认证信息</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#自动化工具（）："><span class="toc-nav-text">自动化工具（）：</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Hexo-Mweb搭建个人博客"><span class="toc-nav-text">Hexo+Mweb搭建个人博客</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#初始化和发布"><span class="toc-nav-text">初始化和发布</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#实现hexo-mweb自动化发布："><span class="toc-nav-text">实现hexo+mweb自动化发布：</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#导出指定目录下的所有文章"><span class="toc-nav-text">导出指定目录下的所有文章</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#获取文章的标签、及获取文章的标签"><span class="toc-nav-text">获取文章的标签、及获取文章的标签</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#更换md文件中的图片地址。"><span class="toc-nav-text">更换md文件中的图片地址。</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#代码实现"><span class="toc-nav-text">代码实现</span></a></li></ol></li></ol>
     
   </div>
 </aside>
