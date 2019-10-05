@@ -10,7 +10,7 @@
   
   <title>
     
-      监控一下33 | Hexo
+      Go-Http-Clien详解 | Hexo
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -143,8 +143,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>监控一下33</h2>
-  <p class="post-date">2019-10-02</p>
+  <h2>Go-Http-Clien详解</h2>
+  <p class="post-date">2019-09-24</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -152,17 +152,17 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="监控的使用"><a href="#监控的使用" class="headerlink" title="监控的使用"></a>监控的使用</h1><h2 id="prometheus"><a href="#prometheus" class="headerlink" title="prometheus"></a>prometheus</h2><p><a href="https://confluence.shopee.io/pages/viewpage.action?pageId=61368408" target="_blank" rel="noopener">5分钟带你认识目前的监控</a></p>
-<h3 id="GO-语言的接入例子"><a href="#GO-语言的接入例子" class="headerlink" title="GO 语言的接入例子"></a>GO 语言的接入例子</h3><h3 id="python语言接入例子"><a href="#python语言接入例子" class="headerlink" title="python语言接入例子"></a>python语言接入例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">mport os</span><br><span class="line">if os.environ.get(&quot;prometheus_multiproc_dir&quot;,None) is None:</span><br><span class="line">	os.environ[&quot;prometheus_multiproc_dir&quot;] = &quot;/workspace&quot;</span><br><span class="line"></span><br><span class="line">from prometheus_client import multiprocess</span><br><span class="line">from prometheus_client import generate_latest, CollectorRegistry, CONTENT_TYPE_LATEST</span><br><span class="line">from prometheus_client import Summary</span><br><span class="line">from django.conf import settings</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">codis_latency = Summary(&apos;gameabr_api_codis_latency_us&apos;, &apos;Codis Latency&apos;, [&apos;codis_key&apos;])</span><br><span class="line"></span><br><span class="line">api_latency = Summary(&apos;gameabr_api_latency_us&apos;, &apos;API Latency&apos;, [&apos;method_name&apos;,&apos;app_res&apos;])</span><br><span class="line"></span><br><span class="line">bigdata_latency = Summary(&apos;gameabr_api_bigdata_latency_us&apos;, &apos;BigData Latency&apos;,[&apos;topic&apos;,&apos;res&apos;])</span><br><span class="line"></span><br><span class="line">es_search_latency = Summary(&apos;gameabr_es_search_latency_us&apos;, &apos;Es Search Latency&apos;, [&apos;method_name&apos;])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def observe_codis_latency(codis_key, cost_latency ):</span><br><span class="line">	codis_latency.labels(codis_key).observe(cost_latency)</span><br><span class="line"></span><br><span class="line">def observe_api_latency(method_name, app_res, cost_latency):</span><br><span class="line">	api_latency.labels(method_name, app_res).observe(cost_latency)</span><br><span class="line"></span><br><span class="line">def observe_bigdata_latency(topic, res, cost_latency):</span><br><span class="line">	bigdata_latency.labels(topic, res).observe(cost_latency)</span><br><span class="line"></span><br><span class="line">def observe_es_latency(method_name, cost_latency):</span><br><span class="line">	es_search_latency.labels(method_name).observe(cost_latency)</span><br><span class="line"></span><br><span class="line">def snapshot():</span><br><span class="line">	api_metric = CollectorRegistry()</span><br><span class="line">	multiprocess.MultiProcessCollector(api_metric)</span><br><span class="line">	data = generate_latest(api_metric)</span><br><span class="line">	return data, CONTENT_TYPE_LATEST</span><br><span class="line"></span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-
-<h3 id="各种监控的配置"><a href="#各种监控的配置" class="headerlink" title="各种监控的配置"></a>各种监控的配置</h3></section>
+    <section class="markdown-content"><h1 id="Go-Http-Clien详解"><a href="#Go-Http-Clien详解" class="headerlink" title="Go-Http-Clien详解"></a>Go-Http-Clien详解</h1><blockquote>
+<p><a href="http://oohcode.com/2018/06/01/golang-http-client-connection-pool" target="_blank" rel="noopener">参考</a></p>
+</blockquote>
+</section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#过程" >
-    <span class="tag-code">过程</span>
+  <a href="/tags#Go语言学习" >
+    <span class="tag-code">Go语言学习</span>
   </a>
 
       </div>
@@ -173,17 +173,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2019/10/02/监控一个文档/">
+      <a class="nav-left" href="/2017/02/12/hello-world/">
         <span class="nav-arrow">← </span>
         
-          国光
+          Hello World
         
       </a>
     
     
-      <a class="nav-right" href="/2019/10/05/这个是测试新增加工作流/">
+      <a class="nav-right" href="/2019/09/24/15693368305348/">
         
-          这个是测试新增加工作流
+          分布式概述
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -210,7 +210,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#监控的使用"><span class="toc-nav-text">监控的使用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#prometheus"><span class="toc-nav-text">prometheus</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#GO-语言的接入例子"><span class="toc-nav-text">GO 语言的接入例子</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#python语言接入例子"><span class="toc-nav-text">python语言接入例子</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#各种监控的配置"><span class="toc-nav-text">各种监控的配置</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Go-Http-Clien详解"><span class="toc-nav-text">Go-Http-Clien详解</span></a></li></ol>
     
   </div>
 </aside>
@@ -220,7 +220,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2019/10/02/监控知识/监控文档2/';
+    var url = 'http://yoursite.com/2019/09/24/15692916121897/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -275,7 +275,7 @@
     var gitmentConfig = "weletry";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "监控一下33",
+        id: "Go-Http-Clien详解",
         owner: "weletry",
         repo: "weletry.github.io",
         oauth: {
