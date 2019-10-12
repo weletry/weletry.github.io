@@ -10,7 +10,7 @@
   
   <title>
     
-      数组、切片和映射 | Weletry&#39;s Blog
+      Go语言的类型系统 | Weletry&#39;s Blog
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -143,8 +143,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>数组、切片和映射</h2>
-  <p class="post-date">2019-10-08</p>
+  <h2>Go语言的类型系统</h2>
+  <p class="post-date">2019-10-10</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -152,32 +152,7 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="数组、切片和映射"><a href="#数组、切片和映射" class="headerlink" title="数组、切片和映射"></a>数组、切片和映射</h1><h2 id="数组的内部实现和基础功能"><a href="#数组的内部实现和基础功能" class="headerlink" title="数组的内部实现和基础功能"></a>数组的内部实现和基础功能</h2><p>数组是内存中连续的一片同时数据的长度是不可变的。<br>数据在函数中传递是值传递，会把数据组重新copy份。在传递过程中尽量<strong>采用指针传递的方式</strong> </p>
-<h2 id="使用切片管理数据集合"><a href="#使用切片管理数据集合" class="headerlink" title="使用切片管理数据集合"></a>使用切片管理数据集合</h2><h3 id="切片与数组的区别"><a href="#切片与数组的区别" class="headerlink" title="切片与数组的区别"></a>切片与数组的区别</h3><p>数组和切片的区别.<br>在创建上的区别：[]内指定了数量的话，就会是创建一个数组。如果没有指定的话，就是创建一个切片。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 创建有3个元素的整型数组</span><br><span class="line">array := [3]int&#123;10, 20, 30&#125;</span><br><span class="line"></span><br><span class="line">// 创建长度和容量都是3的整型切片</span><br><span class="line">slice := []int&#123;10, 20, 30&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在数据结构上的区别：</p>
-<p><img src="https://i.loli.net/2019/10/09/4ovuaTLpHUXl1Kw.jpg" alt="-w607"></p>
-<p>默认值上的区别：<br>数据的初始化时都有一个默认的空值，而切片如果没有指定大小的话，是不会有默认值的</p>
-<p>使用上的区别：<br>切片可以通过[N:M]来创建新的切片，同时共享同一个数组。但是不同的切片看到的数据段不一样。</p>
-<h3 id="切片的使用"><a href="#切片的使用" class="headerlink" title="切片的使用"></a>切片的使用</h3><p><strong>如何追加切片元素</strong><br>切片提供append方法，把元素增加到切片中。</p>
-<ol>
-<li>如果切片容量还够的话，就会直接增加。</li>
-<li>如果切片容量不够，就会创建一个新的切片。</li>
-</ol>
-<p><strong>如何扩容</strong></p>
-<ol>
-<li>容量小于1000的时候，扩容速度是2倍</li>
-<li>容量大于1000的时候，扩容速度是1.25倍</li>
-</ol>
-<h2 id="使用映射管理键值对"><a href="#使用映射管理键值对" class="headerlink" title="使用映射管理键值对"></a>使用映射管理键值对</h2><p>map是对键值对。</p>
-<ul>
-<li><input checked disabled type="checkbox"> <em><em>进一步了解键值对的数据结构</em></em></li>
-</ul>
-<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><ol>
-<li>如果切片[N:M]后，对后面追加数据，之前共享的数组。是否还会共享？<br>答：不会的。会创建一个新的数组。</li>
-</ol>
-</section>
+    <section class="markdown-content"><h1 id="Go语言的类型系统"><a href="#Go语言的类型系统" class="headerlink" title="Go语言的类型系统"></a>Go语言的类型系统</h1><h2 id="声明新的用户定义的类型"><a href="#声明新的用户定义的类型" class="headerlink" title="声明新的用户定义的类型"></a>声明新的用户定义的类型</h2><h2 id="使用方法，为类型增加新的行为"><a href="#使用方法，为类型增加新的行为" class="headerlink" title="使用方法，为类型增加新的行为"></a>使用方法，为类型增加新的行为</h2><h2 id="了解何时使用指针，何时使用值"><a href="#了解何时使用指针，何时使用值" class="headerlink" title="了解何时使用指针，何时使用值"></a>了解何时使用指针，何时使用值</h2><h2 id="通过接口实现多态"><a href="#通过接口实现多态" class="headerlink" title="通过接口实现多态"></a>通过接口实现多态</h2><h2 id="通过组合来扩展或改变类型"><a href="#通过组合来扩展或改变类型" class="headerlink" title="通过组合来扩展或改变类型"></a>通过组合来扩展或改变类型</h2><h2 id="公开或者未公开的标识符"><a href="#公开或者未公开的标识符" class="headerlink" title="公开或者未公开的标识符"></a>公开或者未公开的标识符</h2></section>
     <!-- Tags START -->
     
       <div class="tags">
@@ -195,17 +170,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2019/10/05/15702861627068/">
+      <a class="nav-left" href="/2019/10/08/15705454844878/">
         <span class="nav-arrow">← </span>
         
-          Go 语言学习资料
+          数组、切片和映射
         
       </a>
     
     
-      <a class="nav-right" href="/2019/10/10/15707142784524/">
+      <a class="nav-right" href="/2019/10/11/15707502681984/">
         
-          Go语言的类型系统
+          GO语言的并发
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -232,7 +207,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#数组、切片和映射"><span class="toc-nav-text">数组、切片和映射</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#数组的内部实现和基础功能"><span class="toc-nav-text">数组的内部实现和基础功能</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用切片管理数据集合"><span class="toc-nav-text">使用切片管理数据集合</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#切片与数组的区别"><span class="toc-nav-text">切片与数组的区别</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#切片的使用"><span class="toc-nav-text">切片的使用</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用映射管理键值对"><span class="toc-nav-text">使用映射管理键值对</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#思考"><span class="toc-nav-text">思考</span></a></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Go语言的类型系统"><span class="toc-nav-text">Go语言的类型系统</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#声明新的用户定义的类型"><span class="toc-nav-text">声明新的用户定义的类型</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#使用方法，为类型增加新的行为"><span class="toc-nav-text">使用方法，为类型增加新的行为</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#了解何时使用指针，何时使用值"><span class="toc-nav-text">了解何时使用指针，何时使用值</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#通过接口实现多态"><span class="toc-nav-text">通过接口实现多态</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#通过组合来扩展或改变类型"><span class="toc-nav-text">通过组合来扩展或改变类型</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#公开或者未公开的标识符"><span class="toc-nav-text">公开或者未公开的标识符</span></a></li></ol></li></ol>
     
   </div>
 </aside>
@@ -242,7 +217,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2019/10/08/15705454844878/';
+    var url = 'http://yoursite.com/2019/10/10/15707142784524/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -297,7 +272,7 @@
     var gitmentConfig = "weletry";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "数组、切片和映射",
+        id: "Go语言的类型系统",
         owner: "weletry",
         repo: "weletry.github.io",
         oauth: {
