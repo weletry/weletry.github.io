@@ -152,7 +152,10 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="go语言net-http压测记录"><a href="#go语言net-http压测记录" class="headerlink" title="go语言net/http压测记录"></a>go语言net/http压测记录</h1><p>背景：接口压到2k/qps<br>问题：<br>    - 接口压不上去，同时有大量的报错，主要<figure class="highlight plain"><figcaption><span>tcp 127.0.0.1:9231: connect: can't assign requested address```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 解决问题</span><br></pre></td></tr></table></figure></p>
+    <section class="markdown-content"><h1 id="go语言net-http压测记录"><a href="#go语言net-http压测记录" class="headerlink" title="go语言net/http压测记录"></a>go语言net/http压测记录</h1><p>背景：接口压到2k/qps<br>问题：</p>
+<ul>
+<li>接口压不上去，同时有大量的报错，主要<figure class="highlight plain"><figcaption><span>tcp 127.0.0.1:9231: connect: can't assign requested address```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 解决问题</span><br></pre></td></tr></table></figure></li>
+</ul>
 <p>dial tcp 127.0.0.1:9231: connect: can’t assign requested address</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">从表面看，这个问题感觉是tcp的连接数据已经使用完了，没有得再分配了。所以lsof -i:9231看一下连接的情况，情况如下</span><br><span class="line">![-w541](https://i.loli.net/2019/10/22/t7kjF6sRB2mxavb.jpg)</span><br><span class="line">压测试的时候，创建的连接有16174个，其中有11924个是time_wait,足以证明连接是不断创建和销毁。那就需要思考另外一下问题了。为什么会创建那么多连接了？我已经设置了连接池</span><br><span class="line"></span><br><span class="line">## 引出net连接池解读</span><br><span class="line">### 连接池的配置</span><br></pre></td></tr></table></figure>
 
@@ -311,9 +314,9 @@ if s := pconn.tlsState; s != nil &amp;&amp; s.NegotiatedProtocolIsMutual &amp;&a
     }
 }</code></pre><p>   //如何配置了最大连接数<br>    if t.MaxConnsPerHost &gt; 0 {<br>       //包装一下连接<br>        pconn.conn = &amp;connCloseListener{Conn: pconn.conn, t: t, cmKey: pconn.cacheKey}<br>    }<br>    pconn.br = bufio.NewReader(pconn)<br>    pconn.bw = bufio.NewWriter(persistConnWriter{pconn})<br>    //循环在读<br>    go pconn.readLoop()<br>    //循环写<br>    go pconn.writeLoop()<br>    return pconn, nil<br>}</p>
 <pre><code>
+## 如何解决这个问题
 
-
-### 获取连接后的。
+新创建的连接不会复用，那么我就需要设置更加大的空间连接池，记更加多连接复用。
 </code></pre></section>
     <!-- Tags START -->
     
