@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="weletry&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      go语言net/http压测记录 | Weletry&#39;s Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <!-- css('css/plugins/gitment.css') -->
+    <link rel="stylesheet" href="/css/plugins/gitment.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+    <script src="/js/gitment.js"></script>
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png">
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Weletry's Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>go语言net/http压测记录</h2>
+  <p class="post-date">2019-10-17</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="go语言net-http压测记录"><a href="#go语言net-http压测记录" class="headerlink" title="go语言net/http压测记录"></a>go语言net/http压测记录</h1><p>背景：接口压到2k/qps<br>问题：<br>    - 接口压不上去，同时有大量的报错，主要<figure class="highlight plain"><figcaption><span>tcp 127.0.0.1:9231: connect: can't assign requested address```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 解决问题</span><br></pre></td></tr></table></figure></p>
+<p>dial tcp 127.0.0.1:9231: connect: can’t assign requested address</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">从表面看，这个问题感觉是tcp的连接数据已经使用完了，没有得再分配了。所以lsof -i:9231看一下连接的情况，情况如下</span><br><span class="line">![-w541](https://i.loli.net/2019/10/22/t7kjF6sRB2mxavb.jpg)</span><br><span class="line">压测试的时候，创建的连接有16174个，其中有11924个是time_wait,足以证明连接是不断创建和销毁。那就需要思考另外一下问题了。为什么会创建那么多连接了？我已经设置了连接池</span><br><span class="line"></span><br><span class="line">## 引出net连接池解读</span><br><span class="line">### 连接池的配置</span><br></pre></td></tr></table></figure>
+
+<p>type Transport struct {</p>
+<pre><code>// MaxIdleConns controls the maximum number of idle (keep-alive)
+// connections across all hosts. Zero means no limit.
+//最在空闲连接数，0=无限制
+MaxIdleConns int
+
+// MaxIdleConnsPerHost, if non-zero, controls the maximum idle
+// (keep-alive) connections to keep per-host. If zero,
+// DefaultMaxIdleConnsPerHost is used.
+//每个域名最大的空闲连接数据，如果没有设置的话，默认是2
+MaxIdleConnsPerHost int
+
+// MaxConnsPerHost optionally limits the total number of
+// connections per host, including connections in the dialing,
+// active, and idle states. On limit violation, dials will block.
+//
+// Zero means no limit.
+//
+// For HTTP/2, this currently only controls the number of new
+// connections being created at a time, instead of the total
+// number. In practice, hosts using HTTP/2 only have about one
+// idle connection, though.
+//每个域名最大连接数据设置。
+MaxConnsPerHost int
+
+// IdleConnTimeout is the maximum amount of time an idle
+// (keep-alive) connection will remain idle before closing
+// itself.
+// Zero means no limit.
+//空闲连接数超时
+IdleConnTimeout time.Duration</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">由以上代码可以看出，每个域名是有最大空闲连接数、超时等设置的。当前压测的空闲连接池的数量默认是2.问题：那明明已经设置了连接池，为什么还会创建那么多连接的呢？就算创建那么连接也不会复用？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 获取连接过程</span><br></pre></td></tr></table></figure>
+
+<p>func (t <em>Transport) getConn(treq *transportRequest, cm connectMethod) (</em>persistConn, error) {<br>    req := treq.Request<br>    trace := treq.trace<br>    ctx := req.Context()<br>    //开始获取连接的hook<br>    if trace != nil &amp;&amp; trace.GetConn != nil {<br>        trace.GetConn(cm.addr())<br>    }<br>    //从空闲连接池中获取连接是否有可用的？<br>    if pc, idleSince := t.getIdleConn(cm); pc != nil {<br>        if trace != nil &amp;&amp; trace.GotConn != nil {<br>            trace.GotConn(pc.gotIdleConnTrace(idleSince))<br>        }<br>        // set request canceler to some non-nil function so we<br>        // can detect whether it was cleared between now and when<br>        // we enter roundTrip<br>        t.setReqCanceler(req, func(error) {})<br>        return pc, nil<br>    }<br>  //—-以下在没有空间连接池情况下，创建连接<br>    type dialRes struct {<br>        pc  *persistConn<br>        err error<br>    }<br>    dialc := make(chan dialRes)<br>    cmKey := cm.key()</p>
+<pre><code>// Copy these hooks so we don&apos;t race on the postPendingDial in
+// the goroutine we launch. Issue 11136.
+testHookPrePendingDial := testHookPrePendingDial
+testHookPostPendingDial := testHookPostPendingDial
+
+handlePendingDial := func() {
+    testHookPrePendingDial()
+    go func() {
+        if v := &lt;-dialc; v.err == nil {
+            t.putOrCloseIdleConn(v.pc)
+        } else {
+            t.decHostConnCount(cmKey)
+        }
+        testHookPostPendingDial()
+    }()
+}
+
+cancelc := make(chan error, 1)
+t.setReqCanceler(req, func(err error) { cancelc &lt;- err })
+
+if t.MaxConnsPerHost &gt; 0 {
+    select {
+    case &lt;-t.incHostConnCount(cmKey):
+        // count below conn per host limit; proceed
+    case pc := &lt;-t.getIdleConnCh(cm):
+        if trace != nil &amp;&amp; trace.GotConn != nil {
+            trace.GotConn(httptrace.GotConnInfo{Conn: pc.conn, Reused: pc.isReused()})
+        }
+        return pc, nil
+    case &lt;-req.Cancel:
+        return nil, errRequestCanceledConn
+    case &lt;-req.Context().Done():
+        return nil, req.Context().Err()
+    case err := &lt;-cancelc:
+        if err == errRequestCanceled {
+            err = errRequestCanceledConn
+        }
+        return nil, err
+    }
+}</code></pre><p>  //创建新的连接<br>    go func() {<br>        pc, err := t.dialConn(ctx, cm)<br>        dialc &lt;- dialRes{pc, err}<br>    }()<br>   //获取一个回收channel(无缓冲区的)<br>    idleConnCh := t.getIdleConnCh(cm)<br>    select {<br>    //如果提直接创建比较快<br>    case v := &lt;-dialc:<br>        // Our dial finished.<br>        if v.pc != nil {<br>          //回调GotConn的hook<br>            if trace != nil &amp;&amp; trace.GotConn != nil &amp;&amp; v.pc.alt == nil {<br>                trace.GotConn(httptrace.GotConnInfo{Conn: v.pc.conn})<br>            }<br>            return v.pc, nil<br>        }<br>        // Our dial failed. See why to return a nicer error<br>        // value.<br>        t.decHostConnCount(cmKey)<br>        select {<br>        case &lt;-req.Cancel:<br>            // It was an error due to cancelation, so prioritize that<br>            // error value. (Issue 16049)<br>            return nil, errRequestCanceledConn<br>            // context结束了<br>        case &lt;-req.Context().Done():<br>            return nil, req.Context().Err()<br>        case err := &lt;-cancelc:<br>            if err == errRequestCanceled {<br>                err = errRequestCanceledConn<br>            }<br>            return nil, err<br>        default:<br>            // It wasn’t an error due to cancelation, so<br>            // return the original error message:<br>            return nil, v.err<br>        }<br>        //从channel中获取（无缓冲区的）<br>    case pc := &lt;-idleConnCh:<br>        // Another request finished first and its net.Conn<br>        // became available before our dial. Or somebody<br>        // else’s dial that they didn’t use.<br>        // But our dial is still going, so give it away<br>        // when it finishes:<br>        handlePendingDial()<br>        if trace != nil &amp;&amp; trace.GotConn != nil {<br>            trace.GotConn(httptrace.GotConnInfo{Conn: pc.conn, Reused: pc.isReused()})<br>        }<br>        return pc, nil<br>        //此时请求已经取消<br>    case &lt;-req.Cancel:<br>        handlePendingDial()<br>        return nil, errRequestCanceledConn<br>        //contextext已经结束<br>    case &lt;-req.Context().Done():<br>        handlePendingDial()<br>        return nil, req.Context().Err()<br>    case err := &lt;-cancelc:<br>        handlePendingDial()<br>        if err == errRequestCanceled {<br>            err = errRequestCanceledConn<br>        }<br>        return nil, err<br>    }<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">由以上代码我们可以看到，当在空闲池拿不到后，就会从创建一个或者从getIdleConnCh中获取一个。但是IdleConnch是一个无缓冲池的channel,只有在刚好获取一个连接的时候，同时刚好有一个连接归还，这样才可以重复使用。这样无法避免大量连接的创建与销毁。</span><br><span class="line"></span><br><span class="line">以下是生成一个连接的过程：</span><br></pre></td></tr></table></figure>
+
+<p>func (t <em>Transport) dialConn(ctx context.Context, cm connectMethod) (</em>persistConn, error) {<br>    pconn := &amp;persistConn{<br>        t:             t,<br>        cacheKey:      cm.key(),<br>        reqch:         make(chan requestAndChan, 1),<br>        writech:       make(chan writeRequest, 1),<br>        closech:       make(chan struct{}), //这个是一个close的信息，让pconn.readLoop和pconn.writeLoop退出。<br>        writeErrCh:    make(chan error, 1),  //写的时间错误<br>        writeLoopDone: make(chan struct{}),   //writeLoopDone的信号<br>    }<br>    trace := httptrace.ContextClientTrace(ctx)<br>    wrapErr := func(err error) error {<br>        if cm.proxyURL != nil {<br>            // Return a typed error, per Issue 16997<br>            return &amp;net.OpError{Op: “proxyconnect”, Net: “tcp”, Err: err}<br>        }<br>        return err<br>    }<br>    //https请求的一些操作<br>    if cm.scheme() == “https” &amp;&amp; t.DialTLS != nil {<br>        var err error<br>        pconn.conn, err = t.DialTLS(“tcp”, cm.addr())<br>        if err != nil {<br>            return nil, wrapErr(err)<br>        }<br>        if pconn.conn == nil {<br>            return nil, wrapErr(errors.New(“net/http: Transport.DialTLS returned (nil, nil)”))<br>        }<br>        if tc, ok := pconn.conn.(*tls.Conn); ok {<br>            // Handshake here, in case DialTLS didn’t. TLSNextProto below<br>            // depends on it for knowing the connection state.<br>            //创建连接后的tls验证的连接<br>            if trace != nil &amp;&amp; trace.TLSHandshakeStart != nil {<br>               //TLS开始的勾子<br>                trace.TLSHandshakeStart()<br>            }<br>            if err := tc.Handshake(); err != nil {<br>                go pconn.conn.Close()<br>                if trace != nil &amp;&amp; trace.TLSHandshakeDone != nil {<br>                //TLS结束的勾子<br>                    trace.TLSHandshakeDone(tls.ConnectionState{}, err)<br>                }<br>                return nil, err<br>            }<br>            cs := tc.ConnectionState()<br>            if trace != nil &amp;&amp; trace.TLSHandshakeDone != nil {<br>             //TLS结束的勾子<br>                trace.TLSHandshakeDone(cs, nil)<br>            }<br>            pconn.tlsState = &amp;cs<br>        }<br>    } else {<br>    //https的一些操作<br>        conn, err := t.dial(ctx, “tcp”, cm.addr())<br>        if err != nil {<br>            return nil, wrapErr(err)<br>        }<br>        pconn.conn = conn<br>        if cm.scheme() == “https” {<br>            var firstTLSHost string<br>            if firstTLSHost, _, err = net.SplitHostPort(cm.addr()); err != nil {<br>                return nil, wrapErr(err)<br>            }<br>            if err = pconn.addTLS(firstTLSHost, trace); err != nil {<br>                return nil, wrapErr(err)<br>            }<br>        }<br>    }</p>
+<pre><code>// Proxy setup.
+//配置代理
+switch {
+case cm.proxyURL == nil:
+    // Do nothing. Not using a proxy.
+case cm.proxyURL.Scheme == &quot;socks5&quot;:
+    conn := pconn.conn
+    d := socksNewDialer(&quot;tcp&quot;, conn.RemoteAddr().String())
+    if u := cm.proxyURL.User; u != nil {
+        auth := &amp;socksUsernamePassword{
+            Username: u.Username(),
+        }
+        auth.Password, _ = u.Password()
+        d.AuthMethods = []socksAuthMethod{
+            socksAuthMethodNotRequired,
+            socksAuthMethodUsernamePassword,
+        }
+        d.Authenticate = auth.Authenticate
+    }
+    if _, err := d.DialWithConn(ctx, conn, &quot;tcp&quot;, cm.targetAddr); err != nil {
+        conn.Close()
+        return nil, err
+    }
+case cm.targetScheme == &quot;http&quot;:
+    pconn.isProxy = true
+    if pa := cm.proxyAuth(); pa != &quot;&quot; {
+        pconn.mutateHeaderFunc = func(h Header) {
+            h.Set(&quot;Proxy-Authorization&quot;, pa)
+        }
+    }
+case cm.targetScheme == &quot;https&quot;:
+    conn := pconn.conn
+    hdr := t.ProxyConnectHeader
+    if hdr == nil {
+        hdr = make(Header)
+    }
+    connectReq := &amp;Request{
+        Method: &quot;CONNECT&quot;,
+        URL:    &amp;url.URL{Opaque: cm.targetAddr},
+        Host:   cm.targetAddr,
+        Header: hdr,
+    }
+    if pa := cm.proxyAuth(); pa != &quot;&quot; {
+        connectReq.Header.Set(&quot;Proxy-Authorization&quot;, pa)
+    }
+    connectReq.Write(conn)
+
+    // Read response.
+    // Okay to use and discard buffered reader here, because
+    // TLS server will not speak until spoken to.
+    br := bufio.NewReader(conn)
+    resp, err := ReadResponse(br, connectReq)
+    if err != nil {
+        conn.Close()
+        return nil, err
+    }
+    if resp.StatusCode != 200 {
+        f := strings.SplitN(resp.Status, &quot; &quot;, 2)
+        conn.Close()
+        if len(f) &lt; 2 {
+            return nil, errors.New(&quot;unknown status code&quot;)
+        }
+        return nil, errors.New(f[1])
+    }
+}
+
+if cm.proxyURL != nil &amp;&amp; cm.targetScheme == &quot;https&quot; {
+    if err := pconn.addTLS(cm.tlsHost(), trace); err != nil {
+        return nil, err
+    }
+}
+
+if s := pconn.tlsState; s != nil &amp;&amp; s.NegotiatedProtocolIsMutual &amp;&amp; s.NegotiatedProtocol != &quot;&quot; {
+    if next, ok := t.TLSNextProto[s.NegotiatedProtocol]; ok {
+        return &amp;persistConn{alt: next(cm.targetAddr, pconn.conn.(*tls.Conn))}, nil
+    }
+}</code></pre><p>   //如何配置了最大连接数<br>    if t.MaxConnsPerHost &gt; 0 {<br>       //包装一下连接<br>        pconn.conn = &amp;connCloseListener{Conn: pconn.conn, t: t, cmKey: pconn.cacheKey}<br>    }<br>    pconn.br = bufio.NewReader(pconn)<br>    pconn.bw = bufio.NewWriter(persistConnWriter{pconn})<br>    //循环在读<br>    go pconn.readLoop()<br>    //循环写<br>    go pconn.writeLoop()<br>    return pconn, nil<br>}</p>
+<pre><code>
+
+
+### 获取连接后的。
+</code></pre></section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#精华总结" >
+    <span class="tag-code">精华总结</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/10/11/15707502681984/">
+        <span class="nav-arrow">← </span>
+        
+          GO语言的并发
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#go语言net-http压测记录"><span class="toc-nav-text">go语言net/http压测记录</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2019/10/17/15712774198334/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+  <script>
+    var gitmentConfig = "weletry";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "go语言net/http压测记录",
+        owner: "weletry",
+        repo: "weletry.github.io",
+        oauth: {
+          client_id: "58a8359827da27b34578",
+          client_secret: "b2ec69e99ca304bb72462bc6623c8205adff4c87"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/weletry">weletry</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

@@ -157,6 +157,12 @@
 </blockquote>
 <h2 id="并发模型CSP"><a href="#并发模型CSP" class="headerlink" title="并发模型CSP"></a>并发模型CSP</h2><p>Go语言的并发同步模型来自一个叫作通信顺序进程<br>CSP(Communicating Sequential Processes，CSP).<br>通过通信的方式共享内存。所以在Go语言中提供了一个channal的类型。</p>
 <p>## </p>
+<h2 id="channel"><a href="#channel" class="headerlink" title="channel"></a>channel</h2><p>channel解决了资源共享与互斥的问题。实现了“不要以共享内存通信，要以通信方式共享内存”的伟大哲学。其它原理如下：<br>    生产者：-&gt;channel中推动数据.当缓冲区满的时候，生产都会阻塞等待。<br>    中间：缓冲区<br>    消费者: &lt;-channel中获取数据。当缓冲区为空的时候，消费者会阻塞等待。</p>
+<h3 id="无缓冲通道"><a href="#无缓冲通道" class="headerlink" title="无缓冲通道"></a>无缓冲通道</h3><p>生产者生产数据时，一定需要消费都准备好，否则就生产者会阻塞等待。无缓冲的通道保证进行发送和接收的goroutine会在同一时间进行数据交换，在工作的应用场景有：</p>
+<ul>
+<li>的</li>
+<li><h3 id="有缓冲通道"><a href="#有缓冲通道" class="headerlink" title="有缓冲通道"></a>有缓冲通道</h3></li>
+</ul>
 </section>
     <!-- Tags START -->
     
@@ -183,6 +189,13 @@
       </a>
     
     
+      <a class="nav-right" href="/2019/10/17/15712774198334/">
+        
+          go语言net/http压测记录
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
   </div>
 
     <!-- NAV END -->
@@ -205,7 +218,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#GO语言的并发"><span class="toc-nav-text">GO语言的并发</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#并发模型CSP"><span class="toc-nav-text">并发模型CSP</span></a></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#GO语言的并发"><span class="toc-nav-text">GO语言的并发</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#并发模型CSP"><span class="toc-nav-text">并发模型CSP</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#channel"><span class="toc-nav-text">channel</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#无缓冲通道"><span class="toc-nav-text">无缓冲通道</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#有缓冲通道"><span class="toc-nav-text">有缓冲通道</span></a></li></ol></li></ol></li></ol>
     
   </div>
 </aside>
