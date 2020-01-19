@@ -152,12 +152,15 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="优雅解决Open-api开发问题总结"><a href="#优雅解决Open-api开发问题总结" class="headerlink" title="优雅解决Open api开发问题总结"></a>优雅解决Open api开发问题总结</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>入职shopee之后，接到第一个工作是open api,主要的工作是为印尼团队提供一些订单等接口。基本逻辑主要订单或者其它服务中。open api主要功能是做一层鉴权及做一些简单的数据逻辑。<br>同时这个服务是其它部分交接过来的python代码</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
+    <section class="markdown-content"><h1 id="优雅解决Open-api开发问题总结"><a href="#优雅解决Open-api开发问题总结" class="headerlink" title="优雅解决Open api开发问题总结"></a>优雅解决Open api开发问题总结</h1><h2 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h2><p>入职shopee之后，接到第一个工作是open api,主要的工作是为印尼团队提供一些订单等接口。基本逻辑主要订单或者其它服务中。open api主要功能是做一层鉴权及做一些简单的数据逻辑。<br>同时这个服务是其它部分交接过来的python代码</p>
+<h2 id="2-问题"><a href="#2-问题" class="headerlink" title="2.问题"></a>2.问题</h2><ol>
 <li>open api没有监控</li>
 <li>python代码不方便开发和维护。因为大家都不熟悉</li>
 <li>接口透传 = 重要简单工作+沟通成本大。</li>
-<li>error_code不无规范<h2 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h2><h3 id="给open-api接入监控"><a href="#给open-api接入监控" class="headerlink" title="给open api接入监控"></a>给open api接入监控</h3>监控包含Qps和时延</li>
+<li>error_code不无规范</li>
+</ol>
+<h2 id="3-如何解决"><a href="#3-如何解决" class="headerlink" title="3.如何解决"></a>3.如何解决</h2><h3 id="给open-api接入监控"><a href="#给open-api接入监控" class="headerlink" title="给open api接入监控"></a>给open api接入监控</h3><p>监控包含Qps和时延</p>
+<ol>
 <li>core server的监控</li>
 <li>spex的监控</li>
 <li>http调用的监控</li>
@@ -234,7 +237,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#优雅解决Open-api开发问题总结"><span class="toc-nav-text">优雅解决Open api开发问题总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#背景"><span class="toc-nav-text">背景</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#问题"><span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#如何解决"><span class="toc-nav-text">如何解决</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#给open-api接入监控"><span class="toc-nav-text">给open api接入监控</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#重构工作"><span class="toc-nav-text">重构工作</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面对重复简单的工作，-同时会增加沟通成本的工作"><span class="toc-nav-text">面对重复简单的工作， 同时会增加沟通成本的工作</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#代码及文档生成"><span class="toc-nav-text">代码及文档生成</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解决沟通问题"><span class="toc-nav-text">解决沟通问题</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#规范问题"><span class="toc-nav-text">规范问题</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#优雅解决Open-api开发问题总结"><span class="toc-nav-text">优雅解决Open api开发问题总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-背景"><span class="toc-nav-text">1.背景</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-问题"><span class="toc-nav-text">2.问题</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-如何解决"><span class="toc-nav-text">3.如何解决</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#给open-api接入监控"><span class="toc-nav-text">给open api接入监控</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#重构工作"><span class="toc-nav-text">重构工作</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面对重复简单的工作，-同时会增加沟通成本的工作"><span class="toc-nav-text">面对重复简单的工作， 同时会增加沟通成本的工作</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#代码及文档生成"><span class="toc-nav-text">代码及文档生成</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解决沟通问题"><span class="toc-nav-text">解决沟通问题</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#规范问题"><span class="toc-nav-text">规范问题</span></a></li></ol></li></ol></li></ol>
     
   </div>
 </aside>
