@@ -146,6 +146,33 @@
   
     <article class="article-card">
       <h2 class="article-head">
+        <a href="/2020/01/19/15794066418392/">map的设计</a>
+      </h2>
+      <p class="article-date">January 19, 2020</p>
+      
+        
+  <a href="/tags#精华总结" >
+    <span class="tag-code">精华总结</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          map的设计map有哪些实现方式map的实现一般是横向+纵向方式来实现，横向常用有数组，而纵向常用有是链表对于map的实现的需求比较关注的几个问题：
+
+数据结构
+如何扩容/缩容
+如何去优化hash碰撞后的问题
+
+以下介绍一下redis、java、go中用到redis的场景。
+redis中的m ...
+        
+      </div>
+      <a class="more" href="/2020/01/19/15794066418392/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
         <a href="/2020/01/19/15794067377738/">优雅的缓存</a>
       </h2>
       <p class="article-date">January 19, 2020</p>
@@ -166,7 +193,7 @@
   
     <article class="article-card">
       <h2 class="article-head">
-        <a href="/2020/01/19/15794066418392/">map的设计</a>
+        <a href="/2020/01/19/15794185724442/">优雅解决Open api开发问题总结</a>
       </h2>
       <p class="article-date">January 19, 2020</p>
       
@@ -178,15 +205,12 @@
       
       <div class="article-summary">
         
-          map的设计map有哪些实现方式map的实现一般是横向+纵向方式来实现，横向常用有数组，而纵向常用有是链表对于map的实现的需求比较关注的几个问题：
-
-数据结构
-如何扩容/缩容
-如何去优化hash碰撞后的问题以下介绍一下redis、java、go中用到redis的场景。redis中的map
- ...
+          优雅解决Open api开发问题总结背景入职shopee之后，接到第一个工作是open api,主要的工作是为印尼团队提供一些订单等接口。基本逻辑主要订单或者其它服务中。open api主要功能是做一层鉴权及做一些简单的数据逻辑。同时这个服务是其它部分交接过来的python代码
+问题
+ope ...
         
       </div>
-      <a class="more" href="/2020/01/19/15794066418392/">Read more</a>
+      <a class="more" href="/2020/01/19/15794185724442/">Read more</a>
     </article>
   
     <article class="article-card">
@@ -329,7 +353,7 @@ normal function12rpc SayHello(HelloRequest) returns  ...
 拨号器
 最大空闲数
 最大连接数
-空闲连接超时 ...
+各种超时的处 ...
         
       </div>
       <a class="more" href="/2019/11/13/15736319456127/">Read more</a>
@@ -358,30 +382,6 @@ net/http/pprof：采集http server的运行时数据进行分析
         
       </div>
       <a class="more" href="/2019/11/11/15734526807130/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/10/17/15712774198334/">go语言net/http压测记录</a>
-      </h2>
-      <p class="article-date">October 17, 2019</p>
-      
-        
-  <a href="/tags#精华总结" >
-    <span class="tag-code">精华总结</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          go语言net/http压测记录背景：接口压到2k/qps问题：
-
-接口压不上去，同时有大量的报错，主要dial tcp 127.0.0.1:9231: connect: can&#39;t assign requested address
-
-解决问题1dial tcp 127.0.0.1: ...
-        
-      </div>
-      <a class="more" href="/2019/10/17/15712774198334/">Read more</a>
     </article>
   
 

@@ -10,7 +10,7 @@
   
   <title>
     
-      map的设计 | Weletry&#39;s Blog
+      优雅解决Open api开发问题总结 | Weletry&#39;s Blog
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -143,7 +143,7 @@
 </header>
 
     <div id="article-banner">
-  <h2>map的设计</h2>
+  <h2>优雅解决Open api开发问题总结</h2>
   <p class="post-date">2020-01-19</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -152,20 +152,33 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="map的设计"><a href="#map的设计" class="headerlink" title="map的设计"></a>map的设计</h1><h2 id="map有哪些实现方式"><a href="#map有哪些实现方式" class="headerlink" title="map有哪些实现方式"></a>map有哪些实现方式</h2><p>map的实现一般是横向+纵向方式来实现，横向常用有数组，而纵向常用有是链表<br>对于map的实现的需求比较关注的几个问题：</p>
-<ol>
-<li>数据结构</li>
-<li>如何扩容/缩容</li>
-<li>如何去优化hash碰撞后的问题</li>
+    <section class="markdown-content"><h1 id="优雅解决Open-api开发问题总结"><a href="#优雅解决Open-api开发问题总结" class="headerlink" title="优雅解决Open api开发问题总结"></a>优雅解决Open api开发问题总结</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>入职shopee之后，接到第一个工作是open api,主要的工作是为印尼团队提供一些订单等接口。基本逻辑主要订单或者其它服务中。open api主要功能是做一层鉴权及做一些简单的数据逻辑。<br>同时这个服务是其它部分交接过来的python代码</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
+<li>open api没有监控</li>
+<li>python代码不方便开发和维护。因为大家都不熟悉</li>
+<li>接口透传 = 重要简单工作+沟通成本大。</li>
+<li>error_code不无规范<h2 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h2><h3 id="给open-api接入监控"><a href="#给open-api接入监控" class="headerlink" title="给open api接入监控"></a>给open api接入监控</h3>监控包含Qps和时延</li>
+<li>core server的监控</li>
+<li>spex的监控</li>
+<li>http调用的监控</li>
+<li>对外接口的监控</li>
 </ol>
-<p>以下介绍一下redis、java、go中用到redis的场景。</p>
-<h2 id="redis中的map"><a href="#redis中的map" class="headerlink" title="redis中的map"></a>redis中的map</h2><p> <img src="https://i.loli.net/2020/01/19/fV5gNIuxmdjl2Qv.jpg" alt="-w1108"></p>
-<p> 扩容：<br> redis的扩容是采用渐进式扩容的。如果实现渐进式TODO</p>
-<h2 id="java中的map"><a href="#java中的map" class="headerlink" title="java中的map"></a>java中的map</h2><p>1.数据结构<br>  数组+链表<br>2.扩容<br>  数组到定的长度（因子*2的次方），扩容速度是2倍。这样的目的是为了更好地做数据迁移<br>3.优化hash碰撞<br>  当链表过长的时候（8个），就会把链表变成红黑树</p>
-<h2 id="go-中的map"><a href="#go-中的map" class="headerlink" title="go 中的map"></a>go 中的map</h2><p>1.数据结构<br>slice数组（新组）+slice的方式；hashtable的数据结构</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">type hmap struct &#123;</span><br><span class="line">    count     int    // 元素的个数</span><br><span class="line">    flags     uint8  // 状态标志</span><br><span class="line">    B         uint8  // 可以最多容纳 6.5 * 2 ^ B 个元素，6.5为装载因子</span><br><span class="line">    noverflow uint16 // 溢出的个数</span><br><span class="line">    hash0     uint32 // 哈希种子</span><br><span class="line"></span><br><span class="line">    buckets    unsafe.Pointer // 桶的地址</span><br><span class="line">    oldbuckets unsafe.Pointer // 旧桶的地址，用于扩容</span><br><span class="line">    nevacuate  uintptr        // 搬迁进度，小于nevacuate的已经搬迁</span><br><span class="line">    overflow *[2]*[]*bmap </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.扩容<br>  用新旧数组来搬迁数据<br>3.纵向数可能会很长</p>
+<h3 id="重构工作"><a href="#重构工作" class="headerlink" title="重构工作"></a>重构工作</h3><ol>
+<li>接口重构后。写脚本对比前后的数据字段是否一致</li>
+<li>流量重放验证结果</li>
+</ol>
+<h3 id="面对重复简单的工作，-同时会增加沟通成本的工作"><a href="#面对重复简单的工作，-同时会增加沟通成本的工作" class="headerlink" title="面对重复简单的工作， 同时会增加沟通成本的工作"></a>面对重复简单的工作， 同时会增加沟通成本的工作</h3><p>思考：是否可以通过对端服务的协议来生成http接口同时也生成文档。一来可以减少开发成本，二来可以减少沟通成本。</p>
+<h4 id="代码及文档生成"><a href="#代码及文档生成" class="headerlink" title="代码及文档生成"></a>代码及文档生成</h4><ol>
+<li>Grpc, spex的接口都可以通过proto生成http转grpc方式调用（这个参考grpc-gateway）的思想来实现的</li>
+<li>http接口：把通过一些功能抽象出来。定义hook去header、request、response、host的处理。让开发只关注hook</li>
+<li>通过proto来生成接口文档</li>
+</ol>
+<h4 id="解决沟通问题"><a href="#解决沟通问题" class="headerlink" title="解决沟通问题"></a>解决沟通问题</h4><ol>
+<li>由于接口文档是通过协议文档生成。这样的话，大大降低了使用方和接入方沟通障碍。</li>
+</ol>
+<h3 id="规范问题"><a href="#规范问题" class="headerlink" title="规范问题"></a>规范问题</h3><ol>
+<li>err_code规范化：通过err_code+服务err_code段</li>
+</ol>
 </section>
     <!-- Tags START -->
     
@@ -184,13 +197,20 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2020/01/19/15794067377738/">
+      <a class="nav-left" href="/2020/01/17/15792347490911/">
         <span class="nav-arrow">← </span>
         
-          优雅的缓存
+          宏观上了解k8s
         
       </a>
     
+    
+      <a class="nav-right" href="/2020/01/19/15794067377738/">
+        
+          优雅的缓存
+        
+        <span class="nav-arrow"> →</span>
+      </a>
     
   </div>
 
@@ -214,7 +234,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#map的设计"><span class="toc-nav-text">map的设计</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#map有哪些实现方式"><span class="toc-nav-text">map有哪些实现方式</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#redis中的map"><span class="toc-nav-text">redis中的map</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#java中的map"><span class="toc-nav-text">java中的map</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#go-中的map"><span class="toc-nav-text">go 中的map</span></a></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#优雅解决Open-api开发问题总结"><span class="toc-nav-text">优雅解决Open api开发问题总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#背景"><span class="toc-nav-text">背景</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#问题"><span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#如何解决"><span class="toc-nav-text">如何解决</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#给open-api接入监控"><span class="toc-nav-text">给open api接入监控</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#重构工作"><span class="toc-nav-text">重构工作</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面对重复简单的工作，-同时会增加沟通成本的工作"><span class="toc-nav-text">面对重复简单的工作， 同时会增加沟通成本的工作</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#代码及文档生成"><span class="toc-nav-text">代码及文档生成</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解决沟通问题"><span class="toc-nav-text">解决沟通问题</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#规范问题"><span class="toc-nav-text">规范问题</span></a></li></ol></li></ol></li></ol>
     
   </div>
 </aside>
@@ -224,7 +244,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2020/01/19/15794066418392/';
+    var url = 'http://yoursite.com/2020/01/19/15794185724442/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -279,7 +299,7 @@
     var gitmentConfig = "weletry";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "map的设计",
+        id: "优雅解决Open api开发问题总结",
         owner: "weletry",
         repo: "weletry.github.io",
         oauth: {
