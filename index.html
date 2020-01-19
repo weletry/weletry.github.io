@@ -146,6 +146,197 @@
   
     <article class="article-card">
       <h2 class="article-head">
+        <a href="/2020/01/19/15794067377738/">优雅的缓存</a>
+      </h2>
+      <p class="article-date">January 19, 2020</p>
+      
+        
+  <a href="/tags#精华总结" >
+    <span class="tag-code">精华总结</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          优雅的缓存什么是缓存缓存的设计缓存的实现与使用
+        
+      </div>
+      <a class="more" href="/2020/01/19/15794067377738/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/01/19/15794066418392/">map的设计</a>
+      </h2>
+      <p class="article-date">January 19, 2020</p>
+      
+        
+  <a href="/tags#精华总结" >
+    <span class="tag-code">精华总结</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          map的设计map有哪些实现方式map的实现一般是横向+纵向方式来实现，横向常用有数组，而纵向常用有是链表对于map的实现的需求比较关注的几个问题：
+
+数据结构
+如何扩容/缩容
+如何去优化hash碰撞后的问题以下介绍一下redis、java、go中用到redis的场景。redis中的map
+ ...
+        
+      </div>
+      <a class="more" href="/2020/01/19/15794066418392/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/01/17/15792347490911/">宏观上了解k8s</a>
+      </h2>
+      <p class="article-date">January 17, 2020</p>
+      
+        
+  <a href="/tags#k8s" >
+    <span class="tag-code">k8s</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          宏观上了解k8s结构图
+主要分为两部分，分别是Kubernetes Control Plane 和Kubernetes Node
+Kubernetes Control Planekube-controller managercloud-controller managerkube-api s ...
+        
+      </div>
+      <a class="more" href="/2020/01/17/15792347490911/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/01/13/15788833836416/"></a>
+      </h2>
+      <p class="article-date">January 13, 2020</p>
+      
+        
+  <a href="/tags#k8s" >
+    <span class="tag-code">k8s</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          # 
+01 搭建K8s集群[无需科学上网]
+官网：https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kub ...
+        
+      </div>
+      <a class="more" href="/2020/01/13/15788833836416/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/01/02/15779734658571/">protobuf 使用总结</a>
+      </h2>
+      <p class="article-date">January 2, 2020</p>
+      
+        
+  <a href="/tags#协议" >
+    <span class="tag-code">协议</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          protobuf 使用总结protobuf数据结构protoc 插件的使用
+        
+      </div>
+      <a class="more" href="/2020/01/02/15779734658571/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/12/10/15759583265420/">自定义网关</a>
+      </h2>
+      <p class="article-date">December 10, 2019</p>
+      
+        
+  <a href="/tags#GRPC" >
+    <span class="tag-code">GRPC</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          自定义网关了解micore
+
+        
+      </div>
+      <a class="more" href="/2019/12/10/15759583265420/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/11/25/15746763729624/">GRPC入门</a>
+      </h2>
+      <p class="article-date">November 25, 2019</p>
+      
+        
+  <a href="/tags#GRPC" >
+    <span class="tag-code">GRPC</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          GRPC入门基本概念Grpc 像其它rpc一定定义了一些client可以调用的方法，grpc默认使用protocol buffers作为IDL.同时gRPC 可以让你定义四种类型的方法。
+normal function12rpc SayHello(HelloRequest) returns  ...
+        
+      </div>
+      <a class="more" href="/2019/11/25/15746763729624/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2019/11/13/15736319456127/">连接池具备提功能</a>
+      </h2>
+      <p class="article-date">November 13, 2019</p>
+      
+        
+  <a href="/tags#精华总结" >
+    <span class="tag-code">精华总结</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          连接池具备提功能功能
+可配置及连接池具
+获取连接
+如果连接池为空，创建连接
+如果连接池不足，上浮创建连接
+如果上浮已经全部使用完，等待获取连接池有连接
+等待超时
+
+
+使用连接
+归还连接
+如果连接失效，不再归还
+如果连接有效，归还
+
+
+
+连接池配置
+拨号器
+最大空闲数
+最大连接数
+空闲连接超时 ...
+        
+      </div>
+      <a class="more" href="/2019/11/13/15736319456127/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
         <a href="/2019/11/11/15734526807130/">PProf性能分析</a>
       </h2>
       <p class="article-date">November 11, 2019</p>
@@ -193,184 +384,16 @@ net/http/pprof：采集http server的运行时数据进行分析
       <a class="more" href="/2019/10/17/15712774198334/">Read more</a>
     </article>
   
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/10/11/15707502681984/">GO语言的并发</a>
-      </h2>
-      <p class="article-date">October 11, 2019</p>
-      
-        
-  <a href="/tags#Go语言实战" >
-    <span class="tag-code">Go语言实战</span>
-  </a>
 
-      
-      <div class="article-summary">
-        
-          GO语言的并发
-“不要以共享内存方式通信，要以通信方式共享内存”
-
-并发模型CSPGo语言的并发同步模型来自一个叫作通信顺序进程CSP(Communicating Sequential Processes，CSP).通过通信的方式共享内存。所以在Go语言中提供了一个channal的类型。
-# ...
-        
-      </div>
-      <a class="more" href="/2019/10/11/15707502681984/">Read more</a>
-    </article>
   
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/10/10/15707142784524/">Go语言的类型系统</a>
-      </h2>
-      <p class="article-date">October 10, 2019</p>
-      
-        
-  <a href="/tags#Go语言实战" >
-    <span class="tag-code">Go语言实战</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          Go语言的类型系统声明新的用户定义的类型使用方法，为类型增加新的行为了解何时使用指针，何时使用值通过接口实现多态通过组合来扩展或改变类型公开或者未公开的标识符
-        
-      </div>
-      <a class="more" href="/2019/10/10/15707142784524/">Read more</a>
-    </article>
+    <div class="guide-pager">
   
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/10/08/15705454844878/">数组、切片和映射</a>
-      </h2>
-      <p class="article-date">October 8, 2019</p>
-      
-        
-  <a href="/tags#Go语言实战" >
-    <span class="tag-code">Go语言实战</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          数组、切片和映射数组的内部实现和基础功能数组是内存中连续的一片同时数据的长度是不可变的。数据在函数中传递是值传递，会把数据组重新copy份。在传递过程中尽量采用指针传递的方式 
-使用切片管理数据集合切片与数组的区别数组和切片的区别.在创建上的区别：[]内指定了数量的话，就会是创建一个数组。如 ...
-        
-      </div>
-      <a class="more" href="/2019/10/08/15705454844878/">Read more</a>
-    </article>
+    <a class="unvisible" href="/"><span class="page-arrow">←</span> Prev</a>
   
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/10/05/15702861627068/">Go 语言学习资料</a>
-      </h2>
-      <p class="article-date">October 5, 2019</p>
-      
-        
-  <a href="/tags#Go语言学习" >
-    <span class="tag-code">Go语言学习</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          Go 语言学习资料github地址Go 学习之路：Go 开发者博客、Go 微信公众号、Go 学习资料（文档、书籍、视频）：https://github.com/developer-learning/learning-golang
-
-        
-      </div>
-      <a class="more" href="/2019/10/05/15702861627068/">Read more</a>
-    </article>
   
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/09/27/15695833093085/">服务器</a>
-      </h2>
-      <p class="article-date">September 27, 2019</p>
-      
-        
-  <a href="/tags#安装部署" >
-    <span class="tag-code">安装部署</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          服务器这个不可以见的
-
-        
-      </div>
-      <a class="more" href="/2019/09/27/15695833093085/">Read more</a>
-    </article>
+    <a href="/page/2/">Next<span class="page-arrow"> →</span></a>
   
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/09/25/15693714630833/">Hexo+Mweb搭建个人博客</a>
-      </h2>
-      <p class="article-date">September 25, 2019</p>
-      
-        
-  <a href="/tags#安装部署" >
-    <span class="tag-code">安装部署</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          Hexo+Mweb搭建个人博客
-用hexo搭建个人博客主要分为几部分，分别是博客的初始化、发布到github、实现hexo+mweb自动化发布
-
-初始化和发布
-这两个过程，网上很多教程，此处就不做过多描述
-
-初始化流程：https://www.jianshu.com/p/4818be9093 ...
-        
-      </div>
-      <a class="more" href="/2019/09/25/15693714630833/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/09/25/15693716577757/">资源池的总结</a>
-      </h2>
-      <p class="article-date">September 25, 2019</p>
-      
-        
-  <a href="/tags#精华总结" >
-    <span class="tag-code">精华总结</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          资源池的总结为了提高并发及减少系统的开销，我们在架构设计的过程中都加入了“池”概念，如：tcp/http连接池，线程池、redis的连接池等等。以下对种种池做一个分析及总结
-http（网络）连接池线程池中间件的连接池
-        
-      </div>
-      <a class="more" href="/2019/09/25/15693716577757/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2019/09/24/15692916121897/">Go-Http-Clien详解</a>
-      </h2>
-      <p class="article-date">September 24, 2019</p>
-      
-        
-  <a href="/tags#Go语言学习" >
-    <span class="tag-code">Go语言学习</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          Go-Http-Clien详解
-参考
-
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676 ...
-        
-      </div>
-      <a class="more" href="/2019/09/24/15692916121897/">Read more</a>
-    </article>
-  
-
+</div>
   
 </main>
 
@@ -380,7 +403,7 @@ http（网络）连接池线程池中间件的连接池
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
     <br>
     Theme by <a href="https://github.com/weletry">weletry</a>
   </p>
